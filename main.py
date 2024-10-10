@@ -93,11 +93,11 @@ RAID_COMMAND_NAXX_DAY1 = """
 
 We will clear wings in the following order:
 1. Abom Wing
-2. DK Wing up to and including Gothik
+2. DK Wing up to and including Gothik (Possibly 4hm - see note below)
 3. Plague Wing
 4. Spider Wing
 
-**We will not attempt Four Horsemen on Day 1 unless we are exceptionally fast.**
+**Four Horsemen - If we have the right composition with tanks & healers we will do it Day 1. We will decide before we start clearing and give a note and a moment to adjust SRs.**
 
 Please soft reserve accordingly, as soft reserves from day 1 do **NOT** rollover into day 2, and soft reserves from day 2 do **NOT** apply to day 1; **NO EXCEPTIONS**.
 
