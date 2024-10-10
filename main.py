@@ -6,20 +6,6 @@ from helpers import get_raid_time_utc, RaidTime
 from typing import Dict
 
 
-# SR link defines
-# I split these out separately and added them at the top here to make my life easier because they are what change
-#  most frequently.
-# The keys here need to match the keys in RAIDS define.
-SR_LINKS = {
-    "mc_na": "",
-    "es": "",
-    "bwl": "",
-    "aq40": "",
-    "naxx_day1": "",
-    "naxx_day2": "",
-    "mc_eu": "",
-}
-
 # The discord raid create bot wants the times in EST, so if that ever changes, adjust this accordingly.
 RAID_DISCORD_TZ = "US/Eastern"
 
@@ -48,12 +34,17 @@ RAIDS = {
 }
 
 # Create raid commands define
+# Note: The commands below contain special text identifiers to automatically create the SR links for raidres.fly.dev.
+#       Docs for this are at https://raidres.fly.dev/raid-helper
+#       These don't currently support HRs so you need to go and manually add those.
 RAID_COMMAND_MC_NA = """
 /quickcreate arguments:[template:02][title:Wednesday Weekly MC PUG][description:Bindings + mats HR. All others (eye, neck) open to SR. Non-class tier gear BOEs will be random rolled to the raid by the loot master (you don't need to roll - unless it is SR'ed).
 
 We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS but average time is about 1 hour 15 minutes.
 
-{sr_link}][channel:#wednesday-mc-pug][date:{raid_discord_date}][time:{raid_discord_time}]
+-MC -SR2 -DUP
+
+][channel:#wednesday-mc-pug][date:{raid_discord_date}][time:{raid_discord_time}]
 """
 
 RAID_COMMAND_MC_EU = """
@@ -61,7 +52,9 @@ RAID_COMMAND_MC_EU = """
 
 We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS but average time is about 1 hour 15 minutes.
 
-{sr_link}][channel:#monday-mc-pug][date:{raid_discord_date}][time:{raid_discord_time}]
+-MC -SR2 -DUP
+
+][channel:#monday-mc-pug][date:{raid_discord_date}][time:{raid_discord_time}]
 """
 
 RAID_COMMAND_ES = """
@@ -69,7 +62,9 @@ RAID_COMMAND_ES = """
 
 Legendary enchant HR for the guild.
 
-{sr_link}][channel:#es-signup][date:{raid_discord_date}][time:{raid_discord_time}]
+-ES
+
+][channel:#es-signup][date:{raid_discord_date}][time:{raid_discord_time}]
 """
 
 RAID_COMMAND_BWL = """
@@ -77,7 +72,9 @@ RAID_COMMAND_BWL = """
 
 **DFT, Nelth Tear, and Rejuv Gem have specific loot rules.** Read the pinned post in this channel for details!
 
-{sr_link}][channel:#bwl-signup][date:{raid_discord_date}][time:{raid_discord_time}]
+-BWL -SR2 -DUP
+
+][channel:#bwl-signup][date:{raid_discord_date}][time:{raid_discord_time}]
 """
 
 RAID_COMMAND_AQ40 = """
@@ -85,7 +82,9 @@ RAID_COMMAND_AQ40 = """
 
 **For anyone hoping to soft reserve Bug Trio loot; we kill Vem last.** So please make sure you are NOT soft reserving loot that drops only when Princess Yauj or Lord Kri are killed last.
 
-{sr_link}][channel:#aq40-signup][date:{raid_discord_date}][time:{raid_discord_time}]
+-AQ40 -SR2 -DUP
+
+][channel:#aq40-signup][date:{raid_discord_date}][time:{raid_discord_time}]
 """
 
 RAID_COMMAND_NAXX_DAY1 = """
@@ -101,7 +100,9 @@ We will clear wings in the following order:
 
 Please soft reserve accordingly, as soft reserves from day 1 do **NOT** rollover into day 2, and soft reserves from day 2 do **NOT** apply to day 1; **NO EXCEPTIONS**.
 
-{sr_link}][channel:#naxx-day-1-signup][date:{raid_discord_date}][time:{raid_discord_time}]
+-NAX -SR2 -DUP
+
+][channel:#naxx-day-1-signup][date:{raid_discord_date}][time:{raid_discord_time}]
 """
 
 RAID_COMMAND_NAXX_DAY2 = """
@@ -109,7 +110,9 @@ RAID_COMMAND_NAXX_DAY2 = """
 
 On day 2 we will pickup wherever we left off on day 1 (if you didn't attend, don't hesitate to ask what we have left). Please place a soft reserve when signing up and revisit the soft reserve after day 1 is finished. Soft reserves from day 1 do **NOT** rollover into day 2, and soft reserves from day 2 do **NOT** apply to day 1; **NO EXCEPTIONS**.
 
-{sr_link}][channel:#naxx-day-2-signup][date:{raid_discord_date}][time:{raid_discord_time}]
+-NAX
+
+][channel:#naxx-day-2-signup][date:{raid_discord_date}][time:{raid_discord_time}]
 """
 
 RAID_COMMANDS = {
@@ -155,14 +158,12 @@ def main():
         raid_times[key] = raid_time_utc
 
     for key, command in RAID_COMMANDS.items():
-        sr_link = SR_LINKS[key]
         raid_time_utc = raid_times[key]
         raid_utc_timestamp = str(int(raid_time_utc.timestamp()))
         raid_discord_datetime = raid_time_utc.astimezone(tz.gettz(RAID_DISCORD_TZ))
         raid_discord_date = raid_discord_datetime.strftime("%Y-%m-%d")
         raid_discord_time = raid_discord_datetime.strftime("%H:%M")
         command_text = command.format(
-            sr_link=sr_link,
             raid_discord_date=raid_discord_date,
             raid_discord_time=raid_discord_time,
             raid_utc_timestamp=raid_utc_timestamp,
