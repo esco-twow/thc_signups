@@ -2,7 +2,7 @@
 import calendar
 from datetime import time
 from dateutil import tz
-from helpers import get_raid_time_utc, RaidTime
+from helpers import get_raid_time_utc, get_next_raid_week_reset_date, RaidTime
 from typing import Dict
 
 
@@ -14,6 +14,7 @@ RAID_DISCORD_TZ = "US/Eastern"
 #       and don't need to be adjusted for daylight savings, unless you want to change the raid time based on CST. If you
 #       want to do it in a different timezone, change RAID_TIME_TZ and adjust the time() values accordingly.
 RAID_TZ = "US/Central"
+RAID_WEEK_RESET_WEEKDAY = calendar.TUESDAY
 RAID_TIME_MC_NA = time(19, 0)
 RAID_TIME_BWL = time(15, 0)
 RAID_TIME_STANDARD_EU = time(14, 30)
@@ -151,8 +152,11 @@ Our raid schedule for this week is:
 def main():
     raid_times = {}
     post_keys = {}
+
+    next_raid_week_reset_date = get_next_raid_week_reset_date(RAID_TZ, RAID_WEEK_RESET_WEEKDAY)
+
     for key, raid_time in RAIDS.items():
-        raid_time_utc = get_raid_time_utc(raid_time, RAID_TZ)
+        raid_time_utc = get_raid_time_utc(raid_time, next_raid_week_reset_date)
         post_keys[f"{key}_timestamp"] = str(int(raid_time_utc.timestamp()))
         post_keys[f"{key}_day"] = raid_time.day_name
         raid_times[key] = raid_time_utc
