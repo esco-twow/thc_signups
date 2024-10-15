@@ -49,7 +49,7 @@ We will start invites at the time noted for raid time, and start clearing ASAP. 
 """
 
 RAID_COMMAND_MC_EU = """
-/quickcreate arguments:[template:02][title:Molten Core][description:Bindings + mats HR. All others (eye, neck) open to SR. Non-class tier gear BOEs will be random rolled to the raid by the loot master (you don't need to roll - unless it is SR'ed).
+/quickcreate arguments:[template:02][title:Molten Core][description:Bindings, eye + mats HR. Neck open to SR. Non-class tier gear BOEs will be random rolled to the raid by the loot master (you don't need to roll - unless it is SR'ed).
 
 We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS but average time is about 1 hour 15 minutes.
 
