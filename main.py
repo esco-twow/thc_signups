@@ -1,6 +1,6 @@
 # Imports
 import calendar
-from datetime import time
+from datetime import time, timedelta
 from dateutil import tz
 from helpers import get_raid_time_utc, get_next_raid_week_reset_date, RaidTime
 from typing import Dict
@@ -18,6 +18,7 @@ RAID_WEEK_RESET_WEEKDAY = calendar.TUESDAY
 RAID_TIME_MC_NA = time(19, 0)
 RAID_TIME_BWL = time(15, 0)
 RAID_TIME_STANDARD_EU = time(14, 30)
+RAID_TIME_PULL_TIME_MINUTES = 30
 
 # Raid defines
 # Note: The times are in CST timezone (cause that's where I live, so it's easiest for me). They are in 24-hour format
@@ -132,7 +133,7 @@ RAID_SCHEDULE_TEXT = """
 
 Our raid schedule for this week is:
 
-{mc_na_day} <t:{mc_na_timestamp}:f> - Molten Core (Hosted by USA boyz) <#1219397594862714930>
+{mc_na_day} <t:{mc_na_pull_time_timestamp}:f> - Molten Core (Hosted by USA boyz) <#1219397594862714930>
 
 {es_day} <t:{es_timestamp}:f> - Emerald Sanctum Hard Mode <#1194352240023060521>
 {bwl_day} <t:{bwl_timestamp}:f> - Black Wing Lair (Start time approximate; begins after ES) <#1194351759741694083> 
@@ -157,7 +158,9 @@ def main():
 
     for key, raid_time in RAIDS.items():
         raid_time_utc = get_raid_time_utc(raid_time, next_raid_week_reset_date)
+        raid_time_pull_time_utc = raid_time_utc + timedelta(minutes=RAID_TIME_PULL_TIME_MINUTES)
         post_keys[f"{key}_timestamp"] = str(int(raid_time_utc.timestamp()))
+        post_keys[f"{key}_pull_time_timestamp"] = str(int(raid_time_pull_time_utc.timestamp()))
         post_keys[f"{key}_day"] = raid_time.day_name
         raid_times[key] = raid_time_utc
 
