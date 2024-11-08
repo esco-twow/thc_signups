@@ -7,9 +7,10 @@ from dateutil.relativedelta import relativedelta
 
 
 @dataclass
-class RaidTime:
+class Raid:
     day: int
     time: time
+    command: str
 
     @property
     def day_name(self):
@@ -37,10 +38,10 @@ def get_next_raid_week_reset_date(raid_tz: str, reset_weekday: int) -> datetime:
     return next_raid_week_reset_date
 
 
-def get_raid_time_utc(raid_time: RaidTime, raid_week_reset_date: datetime) -> datetime:
-    raid_time = raid_week_reset_date + relativedelta(weekday=raid_time.day,
-                                                     hour=raid_time.time.hour,
-                                                     minute=raid_time.time.minute,
+def get_raid_time_utc(raid: Raid, raid_week_reset_date: datetime) -> datetime:
+    raid_time = raid_week_reset_date + relativedelta(weekday=raid.day,
+                                                     hour=raid.time.hour,
+                                                     minute=raid.time.minute,
                                                      second=0,
                                                      microsecond=0)
     raid_time_utc = raid_time.astimezone(tz.UTC)
