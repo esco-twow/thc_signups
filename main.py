@@ -136,7 +136,7 @@ Our raid schedule for this week is:
 
 {na_mc_day} <t:{na_mc_pull_time_timestamp}:f> - Molten Core (Hosted by USA boyz) <#1219397594862714930>
 
-{na_bwl_day} <t:{na_bwl_pull_time_timestamp}:f> - BWL Molten Core (Hosted by USA boyz) <#1303912373630799922>
+{na_bwl_day} <t:{na_bwl_pull_time_timestamp}:f> - BWL (Hosted by USA boyz) <#1303912373630799922>
 
 {eu_es_day} <t:{eu_es_timestamp}:f> - Emerald Sanctum Hard Mode <#1194352240023060521>
 {eu_bwl_day} <t:{eu_bwl_timestamp}:f> - Black Wing Lair (Start time approximate; begins after ES) <#1194351759741694083> 
