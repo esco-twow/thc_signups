@@ -83,32 +83,21 @@ RAID_COMMAND_EU_AQ40 = """
 ][channel:#eu-aq40-signup][date:{raid_discord_date}][time:{raid_discord_time}][advanced: <deletion: 12>]
 """
 
-RAID_COMMAND_EU_NAXX_DAY1 = """
-/quickcreate arguments:[template:02][title:Naxxramas Day 1][description:Please refer to the pinned post in this channel for additional **REQUIRED** consumes for this raid.
+RAID_COMMAND_EU_NAXX = """
+/quickcreate arguments:[template:02][title:Naxxramas][description:Please refer to the pinned post in this channel for additional **REQUIRED** consumes for this raid.
+
+**In preparation for Kara40 schedule, we are extending the time for Naxx and will be doing a single day full clear of Naxx.**
 
 We will clear wings in the following order:
 1. Abom Wing
-2. DK Wing up to and including Gothik (Possibly 4hm - see note below)
+2. DK Wing (including 4hm)
 3. Plague Wing
 4. Spider Wing
-
-**Four Horsemen - If we have the right composition with tanks & healers we will do it Day 1. We will decide before we start clearing and give a note and a moment to adjust SRs.**
-
-Please soft reserve accordingly, as soft reserves from day 1 do **NOT** rollover into day 2, and soft reserves from day 2 do **NOT** apply to day 1; **NO EXCEPTIONS**.
+5. Upper - Saph & KT
 
 -NAX -SR2 -DUP
 
 ][channel:#eu-naxx-day-1-signup][date:{raid_discord_date}][time:{raid_discord_time}][advanced: <deletion: 12>]
-"""
-
-RAID_COMMAND_EU_NAXX_DAY2 = """
-/quickcreate arguments:[template:02][title:Naxxramas Day 2][description:Please refer to the pinned post in this channel for additional **REQUIRED** consumes for this raid.
-
-On day 2 we will pickup wherever we left off on day 1 (if you didn't attend, don't hesitate to ask what we have left). Please place a soft reserve when signing up and revisit the soft reserve after day 1 is finished. Soft reserves from day 1 do **NOT** rollover into day 2, and soft reserves from day 2 do **NOT** apply to day 1; **NO EXCEPTIONS**.
-
--NAX
-
-][channel:#eu-naxx-day-2-signup][date:{raid_discord_date}][time:{raid_discord_time}][advanced: <deletion: 12>]
 """
 
 # Raid defines
@@ -122,13 +111,22 @@ RAIDS = {
     "eu_es": Raid(day=calendar.THURSDAY, time=RAID_TIME_EU_STANDARD, command=RAID_COMMAND_EU_ES),
     "eu_bwl": Raid(day=calendar.THURSDAY, time=RAID_TIME_EU_BWL, command=RAID_COMMAND_EU_BWL),
     "eu_aq40": Raid(day=calendar.FRIDAY, time=RAID_TIME_EU_STANDARD, command=RAID_COMMAND_EU_AQ40),
-    "eu_naxx_day1": Raid(day=calendar.SATURDAY, time=RAID_TIME_EU_STANDARD, command=RAID_COMMAND_EU_NAXX_DAY1),
-    "eu_naxx_day2": Raid(day=calendar.SUNDAY, time=RAID_TIME_EU_STANDARD, command=RAID_COMMAND_EU_NAXX_DAY2),
+    "eu_naxx": Raid(day=calendar.SATURDAY, time=RAID_TIME_EU_STANDARD, command=RAID_COMMAND_EU_NAXX),
     "eu_mc": Raid(day=calendar.MONDAY, time=RAID_TIME_EU_STANDARD, command=RAID_COMMAND_EU_MC),
 }
 
-
 # Post raid schedule define
+# Note: Each key from RAIDS define above will get three variables added for each key that can be used in the
+#       RAID_SCHEDULE_TEXT define below:
+#       <key>_day - this is the day of the raid (e.g. Wednesday)
+#       <key>_timestamp - this is the UCT timestamp of the raid as an integer value
+#       <key>_pull_time_timestamp - this is the pull time timestamp of the raid as an integer value (only used for NA
+#                                   MC & BWL)
+#
+#       For example if there is a key "na_mc" in RAIDS, you will get the following available variables:
+#       na_mc_day
+#       na_mc_timestamp
+#       na_mc_pull_time_timestamp
 RAID_SCHEDULE_TEXT = """
 *The times posted below are **local to you** and are when we start the first pull; invites begin 30 minutes prior. Invites go out on a first come first serve basis (for Naxx/AQ40 we reserve the right to **choose** who we invite when we have an overabundance of signups). Don't be late!*
 
@@ -143,9 +141,7 @@ Our raid schedule for this week is:
 
 {eu_aq40_day} <t:{eu_aq40_timestamp}:f> - Temple of Ahn'Qiraj (Gear check required) <#1194351823323144202>
 
-{eu_naxx_day1_day} <t:{eu_naxx_day1_timestamp}:f> - Naxxramas Day 1 (Gear check required) <#1207362552959344640>
-
-{eu_naxx_day2_day} <t:{eu_naxx_day2_timestamp}:f> - Naxxramas Day 2 (Gear check required) <#1257103049261056050>
+{eu_naxx_day} <t:{eu_naxx_timestamp}:f> - Naxxramas (Gear check required) <#1207362552959344640>
 
 {eu_mc_day} <t:{eu_mc_timestamp}:f> - Molten Core (Hosted by guild) <#1191746258990276638>
 
