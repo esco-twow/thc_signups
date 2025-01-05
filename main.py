@@ -26,13 +26,13 @@ RAID_TIME_PULL_TIME_MINUTES = 30
 #       Docs for this are at https://raidres.fly.dev/raid-helper
 #       These don't currently support HRs so you need to go and manually add those.
 RAID_COMMAND_NA_MC = """
-/quickcreate arguments:[template:02][title:Wednesday Weekly MC PUG][description:Bindings + mats HR. All others (eye, neck) open to SR. Non-class tier gear BOEs will be random rolled to the raid by the loot master (you don't need to roll - unless it is SR'ed).
+/quickcreate arguments:[template:02][title:NA Weekly MC PUG][description:Bindings + mats HR. All others (eye, neck) open to SR. Non-class tier gear BOEs will be random rolled to the raid by the loot master (you don't need to roll - unless it is SR'ed).
 
 We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS but average time is about 1 hour 15 minutes.
 
 -MC -SR2 -DUP
 
-][channel:#na-mc][date:{raid_discord_date}][time:{raid_discord_time}][advanced: <deletion: 12>]
+][channel:#na-mc-signup][date:{raid_discord_date}][time:{raid_discord_time}][advanced: <deletion: 12>]
 """
 
 RAID_COMMAND_EU_MC = """
@@ -56,7 +56,7 @@ Legendary enchant HR for the guild.
 """
 
 RAID_COMMAND_NA_BWL = """
-/quickcreate arguments:[template:02][title:Blackwing Lair][description:Mats HR. We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS.
+/quickcreate arguments:[template:02][title:NA Weekly BWL PUG][description:Mats HR. We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS.
 
 -BWL -SR2 -DUP
 
@@ -66,7 +66,7 @@ RAID_COMMAND_NA_BWL = """
 RAID_COMMAND_EU_BWL = """
 /quickcreate arguments:[template:02][title:Blackwing Lair][description:This run will start right after our ES run ends; at approximately <t:{raid_utc_timestamp}:f>
 
-**DFT, Nelth Tear, Rejuv Gem, and Styleen's have specific loot rules.** Read the pinned post in this channel for details!
+**DFT and Styleen's have specific loot rules.** Read the pinned post in this channel for details!
 
 -BWL -SR2 -DUP
 
@@ -128,8 +128,6 @@ RAIDS = {
 #       na_mc_timestamp
 #       na_mc_pull_time_timestamp
 RAID_SCHEDULE_TEXT = """
-*The times posted below are **local to you** and are when we start the first pull; invites begin 30 minutes prior. Invites go out on a first come first serve basis (for Naxx/AQ40 we reserve the right to **choose** who we invite when we have an overabundance of signups). Don't be late!*
-
 Our raid schedule for this week is:
 
 {na_mc_day} <t:{na_mc_pull_time_timestamp}:f> - Molten Core (Hosted by USA boyz) <#1219397594862714930>
@@ -145,7 +143,7 @@ Our raid schedule for this week is:
 
 {eu_mc_day} <t:{eu_mc_timestamp}:f> - Molten Core (Hosted by guild) <#1191746258990276638>
 
-*The times posted above are **local to you** and are when we start the first pull; invites begin 30 minutes prior. Invites go out on a first come first serve basis (for Naxx/AQ40 we reserve the right to **choose** who we invite when we have an overabundance of signups). Don't be late!*
+The times posted above are **local to you** and are when we start the first pull (unless noted); invites begin 30 minutes prior. For most raids, invites go out on a first come first serve basis. For Naxx, we will prioritize invites based on raid composition when we have an overabundance of signups. **Don't be late!**
 """
 
 
