@@ -16,7 +16,7 @@ RAID_DISCORD_TZ = "US/Eastern"
 RAID_TZ = "US/Central"
 RAID_WEEK_RESET_WEEKDAY = calendar.TUESDAY
 RAID_TIME_NA_MC = time(19, 0)
-RAID_TIME_NA_BWL = time(20, 0)
+RAID_TIME_NA_BWL = time(19, 0)
 RAID_TIME_EU_BWL = time(15, 0)
 RAID_TIME_EU_STANDARD = time(14, 30)
 RAID_TIME_PULL_TIME_MINUTES = 30
@@ -26,7 +26,9 @@ RAID_TIME_PULL_TIME_MINUTES = 30
 #       Docs for this are at https://raidres.fly.dev/raid-helper
 #       These don't currently support HRs so you need to go and manually add those.
 RAID_COMMAND_NA_MC = """
-/quickcreate arguments:[template:02][title:NA Weekly MC PUG][description:Bindings + mats HR. All others (eye, neck) open to SR. Non-class tier gear BOEs will be random rolled to the raid by the loot master (you don't need to roll - unless it is SR'ed).
+/quickcreate arguments:[template:2][title:NA Weekly MC PUG][description:Garr bindings + mats HR. All others (Geddon binding, eye, neck, mount) open to SR. Non-class tier gear BOEs will be random rolled to the raid by the loot master (you don't need to roll - unless it is SR'ed).
+
+Geddon binding SR will be given preference to those who already have Garr binding or at least some/most TF mats.
 
 We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS but average time is about 1 hour 15 minutes.
 
@@ -36,7 +38,7 @@ We will start invites at the time noted for raid time, and start clearing ASAP. 
 """
 
 RAID_COMMAND_EU_MC = """
-/quickcreate arguments:[template:02][title:Molten Core][description:Bindings, eye + mats HR. Neck open to SR. Non-class tier gear BOEs will be random rolled to the raid by the loot master (you don't need to roll - unless it is SR'ed).
+/quickcreate arguments:[template:2][title:Molten Core][description:Bindings, eye + mats HR. Neck, mount open to SR. Non-class tier gear BOEs will be random rolled to the raid by the loot master (you don't need to roll - unless it is SR'ed).
 
 We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS but average time is about 1 hour 15 minutes.
 
@@ -46,7 +48,7 @@ We will start invites at the time noted for raid time, and start clearing ASAP. 
 """
 
 RAID_COMMAND_EU_ES = """
-/quickcreate arguments:[template:02][title:Emerald Sanctum][description:We do ES Hard Mode which means Erennius will **NOT** die. Do not SR loot that Erennius drops.
+/quickcreate arguments:[template:2][title:Emerald Sanctum][description:We do ES Hard Mode which means Erennius will **NOT** die. Do not SR loot that Erennius drops.
 
 Legendary enchant HR for the guild.
 
@@ -56,7 +58,7 @@ Legendary enchant HR for the guild.
 """
 
 RAID_COMMAND_NA_BWL = """
-/quickcreate arguments:[template:02][title:NA Weekly BWL PUG][description:Mats HR. We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS.
+/quickcreate arguments:[template:2][title:NA Weekly BWL PUG][description:Mats HR. We will start invites at the time noted for raid time, and start clearing ASAP. Clear time will depend on our DPS.
 
 -BWL -SR2 -DUP
 
@@ -64,7 +66,7 @@ RAID_COMMAND_NA_BWL = """
 """
 
 RAID_COMMAND_EU_BWL = """
-/quickcreate arguments:[template:02][title:Blackwing Lair][description:This run will start right after our ES run ends; at approximately <t:{raid_utc_timestamp}:f>
+/quickcreate arguments:[template:2][title:Blackwing Lair][description:This run will start right after our ES run ends; at approximately <t:{raid_utc_timestamp}:f>
 
 **DFT and Styleen's have specific loot rules.** Read the pinned post in this channel for details!
 
@@ -74,9 +76,9 @@ RAID_COMMAND_EU_BWL = """
 """
 
 RAID_COMMAND_EU_AQ40 = """
-/quickcreate arguments:[template:02][title:Temple of Ahn'Qiraj][description:Please refer to the pinned post in this channel for additional **REQUIRED** consumes for this raid.
+/quickcreate arguments:[template:2][title:Temple of Ahn'Qiraj][description:Please refer to the pinned post in this channel for additional **REQUIRED** consumes for this raid.
 
-**For anyone hoping to soft reserve Bug Trio loot; we kill Vem last.** So please make sure you are NOT soft reserving loot that drops only when Princess Yauj or Lord Kri are killed last.
+**For anyone hoping to soft reserve Bug Trio loot; we kill Yauj last.** So please make sure you are NOT soft reserving loot that drops only when Vem or Lord Kri are killed last.
 
 -AQ40 -SR2 -DUP
 
@@ -84,7 +86,7 @@ RAID_COMMAND_EU_AQ40 = """
 """
 
 RAID_COMMAND_EU_NAXX = """
-/quickcreate arguments:[template:02][title:Naxxramas][description:Please refer to the pinned post in this channel for additional **REQUIRED** consumes for this raid.
+/quickcreate arguments:[template:2][title:Naxxramas][description:Please refer to the pinned post in this channel for additional **REQUIRED** consumes for this raid.
 
 **In preparation for Kara40 schedule, we are extending the time for Naxx and will be doing a single day full clear of Naxx.**
 
